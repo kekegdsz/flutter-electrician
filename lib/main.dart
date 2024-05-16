@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   String _selectedCategory = 'Category 1';
 
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomeFragment(),
     FavoritesFragment(),
     SettingsFragment(),
