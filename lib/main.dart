@@ -31,8 +31,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  String _selectedCategory = 'Category 1';
 
-  static final List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     HomeFragment(),
     FavoritesFragment(),
     SettingsFragment(),
@@ -48,7 +49,33 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Bottom Navigation Demo'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('electrician'),
+            DropdownButton<String>(
+              value: _selectedCategory,
+              icon: const Icon(Icons.arrow_drop_down, color: Colors.blue),
+              dropdownColor: Colors.white,
+              underline: Container(
+                height: 2,
+                color: Colors.transparent,
+              ),
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedCategory = newValue!;
+                });
+              },
+              items: <String>['Category 1', 'Category 2', 'Category 3']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -57,15 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: '首页',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
-            label: '工具',
+            label: 'Favorites',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: '我的',
+            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -75,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 
 class HomeFragment extends StatelessWidget {
   @override
