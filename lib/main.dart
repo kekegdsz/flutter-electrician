@@ -114,7 +114,7 @@ class HomeFragment extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            'https://via.placeholder.com/600x200',
+            'https://img0.baidu.com/it/u=3246928497,677472451&fm=253&fmt=auto&app=138&f=JPEG?w=1371&h=500',
             fit: BoxFit.cover,
           ),
         ),
