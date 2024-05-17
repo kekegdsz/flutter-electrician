@@ -107,11 +107,50 @@ class _MyHomePageState extends State<MyHomePage> {
 class HomeFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Home Fragment'),
+    return Column(
+      children: [
+        // Banner Image
+        Container(
+          width: double.infinity,
+          height: 200,
+          child: Image.network(
+            'https://via.placeholder.com/600x200',
+            fit: BoxFit.cover,
+          ),
+        ),
+        // Grid View
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+              ),
+              itemCount: 8,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Item $index',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
+
 
 class FavoritesFragment extends StatelessWidget {
   @override
